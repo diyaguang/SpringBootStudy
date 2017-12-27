@@ -1,0 +1,26 @@
+package com.dygstudio.conditional;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * @author: diyaguang
+ * @date: 2017/12/27 上午10:24
+ * @description: com.dygstudio.conditional
+ */
+@Configuration
+public class ConditionConfig {
+
+    @Bean
+    @Conditional(WindowsCondition.class)
+    public ListService windowsListService(){
+        return new WindowsListService();
+    }
+
+    @Bean
+    @Conditional(LinuxCondition.class)
+    public ListService linuxListService(){
+        return new LinuxListService();
+    }
+}
